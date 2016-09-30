@@ -51,18 +51,20 @@
 % The widths of these boxes can be easily edited to accommodate your content as you see fit
 
 \begin{minipage}[b]{0.75\linewidth}
-\veryHuge \color{NavyBlue} \textbf{Pleiotropy vs. Close Linkage in the Diversity Outbred Mouse Study} \color{Black}\\ % Title
+\veryHuge \color{NavyBlue} \textbf{Pleiotropy vs. Close Linkage in the Diversity Outbred Mouse Population} \color{Black}\\ % Title
 %\Huge\textit{An Exploration of Complexity}\\[1cm] % Subtitle
-\huge \textbf{Fred Boehm, Mark Keller, Alan Attie, Gary Churchill, Brian Yandell, and Karl Broman}\\ % Author(s)
-\huge University of Wisconsin-Madison \& The Jackson Laboratory\\ % University/organization
+\huge \textbf{Fred Boehm$^{\dagger}$, Mark Keller$^{\dagger}$, Alan Attie$^{\dagger}$, Mary Rabaglia$^{\dagger}$, Kathy Schueler$^{\dagger}$, Donald Stapleton$^{\dagger}$, Gary Churchill$^{\ddagger}$, Brian Yandell$^{\dagger}$, and Karl Broman$^{\dagger}$}\\ % Author(s)
+\huge University of Wisconsin-Madison$^{\dagger}$ \& The Jackson Laboratory$^{\ddagger}$\\ % University/organization
 \end{minipage}
 %
-\begin{minipage}[b]{0.5\linewidth}
+\hspace{8cm}
+\begin{minipage}[b]{0.2\linewidth}
 \color{DarkSlateGray}\Large \textbf{Contact Information:}\\
 Department of Statistics\\ % Address
 University of Wisconsin-Madison\\
 %1220 Medical Sciences Center, 1300 University AVE\\
-Email: \texttt{fred.boehm@wisc.edu}\\ % Email address
+Email: \texttt{fred.boehm@wisc.edu}\\ % Email
+Website: \texttt{http://fboehm.github.io/}
 \end{minipage}
 %
 %\begin{minipage}[b]{0.19\linewidth}
@@ -81,11 +83,11 @@ Email: \texttt{fred.boehm@wisc.edu}\\ % Email address
 
 \color{Navy} % Navy color for the abstract
 
-\begin{abstract}
+%\begin{abstract}
 
-We present initial results from our studies to differentiate pleiotropic QTl from closely linked QTL. In the context of univariate QTL mapping studies, we found numerous loci that associated with multiple clinical traits. To better understand the nature of these associations, we sought to distinguish pleiotropic effects, in which a single locus associates with multiple traits, from closely linked, but distinct, loci, in which two nearby genetic loci each associate with a single trait. We present a likelihood ratio test to quantitatively assess pleiotropy vs. close linkage for two traits that map to a small genomic region. 
+%We present initial results from our studies to differentiate pleiotropic QTl from closely linked QTL. In the context of univariate QTL mapping studies, we found numerous loci that associated with multiple clinical traits. To better understand the nature of these associations, we sought to distinguish pleiotropic effects, in which a single locus associates with multiple traits, from closely linked, but distinct, loci, in which two nearby genetic loci each associate with a single trait. We present a likelihood ratio test to quantitatively assess pleiotropy vs. close linkage for two traits that map to a small genomic region. 
 
-\end{abstract}
+%\end{abstract}
 
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
@@ -98,8 +100,8 @@ Methods for distinguishing a single pleiotropic genomic locus from multiple, clo
 
 
 \begin{center}\vspace{1cm}
-\includegraphics[width=0.8\linewidth]{lods-chr17}
-\captionof{figure}{\color{Green} DO study LOD peaks on chromosome 17}
+\includegraphics[width=0.8\linewidth]{009376}
+\captionof{figure}{\color{Green} DO mice demonstrate variation in body weight and fur color.}
 \end{center}\vspace{1cm}
 
 
@@ -126,67 +128,130 @@ Methods for distinguishing a single pleiotropic genomic locus from multiple, clo
 
 \subsection*{Likelihood ratio test development}
 
-We first sought to implement a likelihood ratio test for the competing hypotheses:
+\begin{itemize}
+\item Extend the methods of \cite{jiang1995multiple} to accommodate the eight founder haplotypes
+\item Implement a likelihood ratio test for the competing hypotheses:
 
 \begin{eqnarray}
 H_0: & \lambda_1 = \lambda_2\nonumber \\
 H_a: & \lambda_1 \neq \lambda_2\nonumber
 \end{eqnarray}
-
-We initially limit our analysis to two traits of interest. This limitation simplifies calculations while still providing a platform from which to investigate more complicated scenarios. In the above hypotheses, $\lambda_1$ is the genomic location for the first QTL, while $\lambda_2$ is the QTL for the second QTL. By restricting the two loci to be the same, we have set the null hypothesis to be equivalent to pleiotropy. On the other hand, by allowing the two loci to differ, the alternative hypothesis represents close linkage.
-
-We modeled the two phenotypes, together, as arising from normal distributions that depend on the estimated founder haplotype probabilities.
-
+\begin{itemize}
+\item $\lambda_1$ is the genomic location for the first QTL, while $\lambda_2$ is the genomic location for the second QTL
+\item $H_0$ is equivalent to pleiotropy, while $H_a$ is close linkage
+\end{itemize}
+\item Initially limit our analysis to two traits
+\item We modeled the two phenotypes, together, as arising from normal distributions that depend on the estimated founder haplotype probabilities.
 \begin{equation}
 Y = XB + E
 \end{equation}
-
-where $Y$ is a n x 2 matrix of phenotype values, $X$ is the n x 8 matrix that includes a column of ones and 7 of the 8 estimated haplotype probabilities, $B$ is the 8 x 2 matrix of effect sizes, and $E$ is the n x 2 matrix of residuals.
-
-Our LRT statistic then simplifies to the following:
-
+\begin{itemize}
+\item $Y$ is a n x 2 matrix of phenotype values, $X$ is the n x 8 matrix that includes a column of ones and 7 of the 8 estimated haplotype probabilities, $B$ is the 8 x 2 matrix of effect sizes, and $E$ is the n x 2 matrix of errors.
+\end{itemize}
+\item LRT statistic is:
 \begin{equation}
 \log \Lambda = - \frac{n}{2}\log \left( \frac{|\Sigma_0|}{|\Sigma_a|}\right)
 \end{equation}
-
-where $\Sigma_0$ and $\Sigma_a$ are the 2 x 2 matrices that's analogous to the sum of squared residuals in univariate regression, under, respectively, the null hypothesis and the alternative hypothesis.  
-
+\begin{itemize}
+\item $\Sigma_0$ and $\Sigma_a$ are the 2 x 2 matrices that are analogous to the sum of squared residuals in univariate regression, under, respectively, the null hypothesis and the alternative hypothesis.
+\end{itemize}
+\end{itemize}
 
 \subsection*{R implementation of LRT}
+\begin{itemize}
+\item pleiotropy R package \cite{boehm2016pleiotropy}
+\begin{itemize}
+\item Available on github: http://github.com/fboehm/pleiotropy
+\end{itemize}
+\item First perform a two-dimensional scan of the chromosome region
+\item Use scan residuals to estimate determinants of the matrices $\Sigma_0$ and $\Sigma_a$
+\item Calculate LRT statistic
+\end{itemize}
 
-We implemented the calculations in the pleiotropy R package \cite{boehm2016}, which is available on github. 
+\subsection*{Evaluating the LRT with simulated data}
+
+\begin{itemize}
+\item Simulated multiple phenotypes with DO mouse estimated haplotype probabilities
+\begin{itemize}
+\item Varied inter-QTL distance when creating phenotypes
+\end{itemize}
+\item Assessed ability of LRT to distinguish pleiotropy from close linkage for distinct inter-QTL distances, $\lambda_1 - \lambda_2$.
+\end{itemize}
+
+\subsection*{Applying LRT to DO mouse phenotypes}
+
+\begin{itemize}
+\item Applied LRT to DO mouse phenotypes
+\item Used interactive website to identify trait-locus pairs on chromosomes 3 and 17
+\item Applied LRT to small genomic regions (~5 to 10 Mb) on chromosomes 3 and 17 to distinguish pleiotropy from close linkage
+\end{itemize}
+
+\begin{center}\vspace{1cm}
+\includegraphics[width=0.8\linewidth]{lods-chr17}
+\captionof{figure}{\color{Green} DO study LOD peaks on chromosome 17. Each point constitutes a LOD peak for one phenotype. Note that many phenotypes share a QTL near 31.6 Mb. Color corresponds to phenotype class, where red represents the class of body weight-related phenotypes, and purple is the class of insulin secretion phenotypes.}
+\end{center}\vspace{1cm}
+
 
 
 %----------------------------------------------------------------------------------------
 %	RESULTS 
 %----------------------------------------------------------------------------------------
+\section*{Results}
 
-\section*{Results with simulated data}
+\subsection*{Results with simulated phenotypes}
+
+\begin{center}\vspace{1cm}
+\includegraphics[width=0.8\linewidth]{sim1}
+\captionof{figure}{\color{Green} DO study LOD peaks on chromosome 17}
+\end{center}\vspace{1cm}
+
+\begin{itemize}
+\item Used a normal linear model to simulate traits from loci in DO mice
+\item Characterized our LRT by determining whether we could recover the true relationship (pleiotropy or close linkage) between the loci
+\item Greater inter-locus distances gave rise to higher LOD scores in our profile LOD plots.
+\end{itemize}
 
 
+\subsection*{Results with DO mice phenotypes}
 
-\section*{Results with DO phenotypes}
+We investigated a chromosome 17 locus that demonstrated multiple associations with body weight phenotypes. 
+
+\begin{center}\vspace{1cm}
+\includegraphics[width=0.8\linewidth]{do2.png}
+\captionof{figure}{\color{Green} Weight change from week 1 to week 11 and weight change from week 1 to week 12 on chromosome 17}
+\end{center}\vspace{1cm}
+
+\begin{center}\vspace{1cm}
+\includegraphics[width=0.8\linewidth]{do3.png}
+\captionof{figure}{\color{Green} Chromosome 3 study with traits 1. Fraction of insulin secretion in response to amino acids and glucose and 2. Insulin secretion in response to GLP1 and glucose }
+\end{center}\vspace{1cm}
 
 
 
 
 \section*{Discussion}
 
+\begin{itemize}
+\item Simulation studies
+\begin{itemize}
+\item 
+\end{itemize}
+
+\item Investigations of chromosome 17 QTL
+\begin{itemize}
+\item Our evidence, in which we see that the LOD scores are 
+\end{itemize}
+
+\end{itemize}
+We find little evidence for the alternative hypothesis of close linkage in our studies with DO phenotypes. Our simulation studies indicate that we can distinguish pleiotropy from close linkage by examining the profile LOD plots.
+
+
 
 %----------------------------------------------------------------------------------------
 %	CONCLUSIONS
 %----------------------------------------------------------------------------------------
 
-\color{SaddleBrown} % SaddleBrown color for the conclusions to make them stand out
 
-\section*{Conclusions}
-
-\begin{itemize}
-\item Pellentesque eget orci eros. Fusce ultricies, tellus et pellentesque fringilla, ante massa luctus libero, quis tristique purus urna nec nibh. Phasellus fermentum rutrum elementum. Nam quis justo lectus.
-\item Vestibulum sem ante, hendrerit a gravida ac, blandit quis magna.
-\item Donec sem metus, facilisis at condimentum eget, vehicula ut massa. Morbi consequat, diam sed convallis tincidunt, arcu nunc.
-\item Nunc at convallis urna. isus ante. Pellentesque condimentum dui. Etiam sagittis purus non tellus tempor volutpat. Donec et dui non massa tristique adipiscing.
-\end{itemize}
 
 \color{DarkSlateGray} % Set the color back to DarkSlateGray for the rest of the content
 
@@ -194,7 +259,7 @@ We implemented the calculations in the pleiotropy R package \cite{boehm2016}, wh
 %	FORTHCOMING RESEARCH
 %----------------------------------------------------------------------------------------
 
-\section*{Forthcoming Research}
+%\section*{Forthcoming Research}
 
 
 
