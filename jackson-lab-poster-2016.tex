@@ -202,19 +202,38 @@ Y = XB + E
 
 \begin{center}\vspace{1cm}
 \includegraphics[width=0.8\linewidth]{sim1}
-\captionof{figure}{\color{Green} DO study LOD peaks on chromosome 17}
+\captionof{figure}{\color{Green} }
 \end{center}\vspace{1cm}
+
+\begin{center}\vspace{1cm}
+\includegraphics[width=0.8\linewidth]{sim-50markers}
+\captionof{figure}{\color{Green} Profile LOD plots }
+\end{center}\vspace{1cm}
+
+
 
 \begin{itemize}
 \item Used a normal linear model to simulate traits from loci in DO mice
 \item Characterized our LRT by determining whether we could recover the true relationship (pleiotropy or close linkage) between the loci
 \item Greater inter-locus distances gave rise to higher LOD scores in our profile LOD plots.
+\item \begin{equation}
+\text{profile LOD}(\lambda_1) = \sup_{\lambda_2}LOD(\lambda_1, \lambda_2)
+\end{equation}
+\item \begin{equation}
+\text{profile LOD}(\lambda_2) = \sup_{\lambda_1}LOD(\lambda_1, \lambda_2)
+\end{equation}
+
+
 \end{itemize}
 
 
 \subsection*{Results with DO mice phenotypes}
 
-We investigated a chromosome 17 locus that demonstrated multiple associations with body weight phenotypes. 
+\begin{itemize}
+\item Chromosome 17 locus associates with multiple body weight phenotypes
+\item Chromosome 3 locus associates with insulin secretion phenotypes
+\end{itemize}
+
 
 \begin{center}\vspace{1cm}
 \includegraphics[width=0.8\linewidth]{do2.png}
@@ -231,19 +250,17 @@ We investigated a chromosome 17 locus that demonstrated multiple associations wi
 
 \section*{Discussion}
 
-\begin{itemize}
-\item Simulation studies
-\begin{itemize}
-\item 
-\end{itemize}
+%%\begin{itemize}
+%\item Simulation studies
+%\begin{itemize}
+%\item 
+%\end{itemize}
 
-\item Investigations of chromosome 17 QTL
+%\item Investigations of chromosome 17 QTL
 \begin{itemize}
-\item Our evidence, in which we see that the LOD scores are 
+\item Simulation studies indicate that we can distinguish pleiotropy from close linkage by examining the profile LOD plots
+\item Our findings, in which we see low profile LOD scores, indicates little evidence for the alternative hypothesis of close linkage in both the chromosome 3 studies and the chromosome 17 studies
 \end{itemize}
-
-\end{itemize}
-We find little evidence for the alternative hypothesis of close linkage in our studies with DO phenotypes. Our simulation studies indicate that we can distinguish pleiotropy from close linkage by examining the profile LOD plots.
 
 
 
