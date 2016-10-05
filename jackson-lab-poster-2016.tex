@@ -96,13 +96,9 @@ Website: \texttt{http://fboehm.github.io/}
 \color{SaddleBrown} % SaddleBrown color for the introduction
 \section*{Introduction}
 
-Methods for distinguishing a single pleiotropic genomic locus from multiple, closely linked loci have significant implications in modern genetics research. Such strategies may reveal novel roles for known genes and may contribute to discovery of previously unstudied genes. In both cases, our methods clarify the genetic underpinnings of complex traits. 
+Methods for distinguishing a single pleiotropic genomic locus from multiple, closely linked loci have significant implications in modern genetics research. Such strategies may reveal novel roles for known genes and may contribute to discovery of previously unstudied genes. In both cases, our methods enhance understanding of the genetic underpinnings of complex traits. 
 
 
-\begin{center}\vspace{1cm}
-\includegraphics[width=0.8\linewidth]{009376}
-\captionof{figure}{\color{Green} DO mice demonstrate variation in body weight and fur color.}
-\end{center}\vspace{1cm}
 
 
 %----------------------------------------------------------------------------------------
@@ -111,14 +107,11 @@ Methods for distinguishing a single pleiotropic genomic locus from multiple, clo
 
 \color{DarkSlateGray} % DarkSlateGray color for the rest of the content
 
-\section*{Approach}
+\section*{Goal}
 
-\begin{enumerate}
-\item Develop a likelihood ratio test (LRT) for the competing hypotheses, pleiotropy and close linkage
-\item Implement the LRT in the R statistical computing environment 
-\item Assess LRT performance with simulated data
-\item Assess LRT performance with DO mouse phenotypes
-\end{enumerate}
+\begin{itemize}
+\item Are two traits affected by a single locus (pleiotropy) or a pair of loci (close linkage)? 
+\end{itemize}
 
 %----------------------------------------------------------------------------------------
 %	MATERIALS AND METHODS
@@ -129,7 +122,8 @@ Methods for distinguishing a single pleiotropic genomic locus from multiple, clo
 \subsection*{Likelihood ratio test development}
 
 \begin{itemize}
-\item Extend the methods of \cite{jiang1995multiple} to accommodate the eight founder haplotypes
+\item \cite{jiang1995multiple} developed a likelihood ratio test to characterize two jointly mapped traits as either both being associated with a single pleiotropic locus or each being associated with distinct (but closely linked) loci
+\item Extend the methods of \cite{jiang1995multiple} to accommodate the eight founder haplotypes in the Diversity Outbred (DO) mouse population
 \item Implement a likelihood ratio test for the competing hypotheses:
 
 \begin{eqnarray}
@@ -168,6 +162,20 @@ Y = XB + E
 \item Calculate LRT statistic
 \end{itemize}
 
+
+%\begin{center}\vspace{1cm}
+%\includegraphics[width=0.8\linewidth]{009376}
+%\captionof{figure}{\color{Green} DO mice demonstrate variation in body weight and fur color.}
+%\end{center}\vspace{1cm}
+
+\begin{center}\vspace{1cm}
+\includegraphics[width=\linewidth]{lrt-flow}
+\captionof{figure}{\color{Green} Flow chart for our LRT procedure.}
+\end{center}\vspace{1cm}
+
+
+
+
 \subsection*{Evaluating the LRT with simulated data}
 
 \begin{itemize}
@@ -178,12 +186,10 @@ Y = XB + E
 \item Assessed ability of LRT to distinguish pleiotropy from close linkage for distinct inter-QTL distances, $\lambda_1 - \lambda_2$.
 \end{itemize}
 
-\subsection*{Applying LRT to DO mouse phenotypes}
+\subsection*{Efforts to distinguish pleiotropy from close linkage in DO mouse phenotypes}
 
 \begin{itemize}
-\item Applied LRT to DO mouse phenotypes
-\item Used interactive website to identify trait-locus pairs on chromosomes 3 and 17
-\item Applied LRT to small genomic regions (~5 to 10 Mb) on chromosomes 3 and 17 to distinguish pleiotropy from close linkage
+\item Applied LRT to small genomic regions (~5 to 10 Mb) on chromosomes 3 and 17 to try to distinguish pleiotropy from close linkage
 \end{itemize}
 
 \begin{center}\vspace{1cm}
@@ -196,6 +202,7 @@ Y = XB + E
 %----------------------------------------------------------------------------------------
 %	RESULTS 
 %----------------------------------------------------------------------------------------
+\color{Navy}
 \section*{Results}
 
 \subsection*{Results with simulated phenotypes}
